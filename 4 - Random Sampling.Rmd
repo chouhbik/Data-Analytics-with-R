@@ -1,0 +1,91 @@
+---
+title: "4 - Random Sampling in R"
+author: "Kamal Chouhbi"
+output:
+  html_notebook:
+    theme: simplex
+    toc: true
+    toc_depth: 4
+---
+
+There are often occasions when it is useful to take a random sample from an already existing vector, or to generate data according to some distribution. We will discuss methods for creating randomly generated vectors in this notebook.
+
+### **Sampling from a Vector**
+
+We can use the `sample()` function to randomly select some number of elements from a vector. We can control the number of elements selected using the `size` parameter. 
+
+```{r}
+v <- c(71, 58, 38, 99, 48, 55,
+       25, 67, 32, 36, 84, 18)
+
+sample(v, size=3)
+```
+
+Note that we will get a different result each time we run the `sample` command. 
+
+```{r}
+sample(v, size=3)
+```
+
+By default, the sampling is performed without replacement. We can alter this behavior by setting `replace=TRUE`. 
+
+```{r}
+sample(v, size=6, replace=TRUE)
+```
+
+
+### **Sampling from a Normal Distribution**
+
+We can use the `rnorm` function to generate a random sample according to a normal distribution. In the cell below, we generate 300 values from a normal distribution with a mean of 20 and a standard deviation of 4. We then display the first 10 values in our random sample. 
+
+```{r}
+sample_1 <- rnorm(n=300, mean=20, sd=4)
+sample_1[1:10]
+```
+
+It is difficult to tell that our sample is randomly generate just by looking at the values for 10 (or all 300) observations. However, recall that for a normal distribution:
+
+* 68.26% of all observations are within 1 standard deviation from the mean.
+* 95.44% of all observations are within 1 standard deviation from the mean. 
+* 99.73% of all observations are within 1 standard deviation from the mean. 
+
+Since we are working with a randomly generated sample, our proportions might vary a bit from this, but they should be similar. 
+
+```{r}
+mean((sample_1 > 16) & (sample_1 < 24))
+```
+
+```{r}
+mean((sample_1 > 12) & (sample_1 < 28))
+```
+
+```{r}
+mean((sample_1 > 8) & (sample_1 < 32))
+```
+
+### **Sampling from a Uniform Distribution**
+
+We can use the function `runif` to sample from a uniform distribution. In the cell below, we generate 300 observations of a variable that is uniformly distributed on the interval `[0, 10]`. We then display the first 10 values in our random sample. 
+
+```{r}
+sample_2 <- runif(n=300, min=0, max=10)
+sample_2[1:10]
+```
+
+Since the length of our interval is 10, roughly 70% of our observations should be less than 7. 
+
+```{r}
+mean(sample_2 < 7)
+```
+
+Roughly 50% of our observations should be between 3 and 8. 
+
+```{r}
+mean((sample_2 > 3) & (sample_2 < 8))
+```
+
+Roughly 80% of our observations should be greater than 2. 
+
+```{r}
+mean(sample_2 > 2)
+```

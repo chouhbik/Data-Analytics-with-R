@@ -1,0 +1,104 @@
+---
+title: "3 - Additional Vector Topics"
+author: "Kamal Chouhbi"
+output:
+  html_notebook:
+    theme: simplex
+    toc: true
+    toc_depth: 4
+---
+
+### **Selecting Vector Elements**
+
+On ocassion, we will want to select one or more elements from a vector. In this section, we will discuss two methods for doing as such: Indexing and Slicing. Later in this notebook, we will discuss a more advanced method called boolean masking. 
+
+#### **Indexing**
+
+If we want to select a specific entry from a vector, we can do so by following the name of the vector with `[n]`, where `n` indicates the position of the element we wish to select. This position is called the element's `index`. 
+
+Note: Unlike most languages, R uses 1 as the index of the first element in a vector (as opposed to 0).
+
+```{r}
+my_vec <- c(10, 20, 30, 40, 50, 60, 70, 80, 90)
+
+my_vec[1]
+```
+
+```{r}
+my_vec[3]
+```
+
+Putting a negative sign in from of an index returns a copy of the vector with the element at that position removed. 
+
+```{r}
+my_vec[-3]
+```
+
+
+#### **Slicing**
+
+We can select multiple elements from a vector by replacing the index with a vector of indices. 
+
+```{r}
+my_vec[c(3, 4, 8)]
+```
+
+```{r}
+my_vec[2:6]
+```
+
+We can also use negative indexing to drop several from a vector. 
+
+```{r}
+my_vec[-(2:6)]
+```
+
+
+### **Vector Comparisons**
+
+We can use the operators `<`, `>`, `<=`, `=>`, and `==` to compare vectors and scalars. As with other vector operations, this comparison is performed elementwise. The comparison will return a boolean (TRUE/FALSE) vector of the same size as the original vector. 
+
+```{r}
+v <- c(5, 6, 2, 3, 9, 4, 8, 1)
+
+v < 6
+```
+
+#### **Conditional Counting**
+
+R, like most programming languages, assigns a numerical value of 0 to the boolean value FALSE, and assigns a value of 1 to the boolean value TRUE. This fact allows us to use the `sum()` function to count the number of elements in a vector that satisfy a certain critera. 
+
+
+```{r}
+sum(v < 6)
+```
+
+#### **Boolean Subsetting**
+
+We can select elements of a vector by passing it a seperate boolean vector of the same size. For example, assume that we have a vector `v` and a boolean vector `sel` of the same size as `v`. If we pass `sel` to `v` in place of an index, then we will get back only the elements of `v` that are associated with `TRUE` values in `sel`. 
+
+```{r}
+w <- c(11, 22, 33, 44, 55)
+sel <- c(TRUE, FALSE, TRUE, TRUE, FALSE)
+w[sel]
+```
+
+#### **Boolean Masking**
+
+Using a boolean vector might not seem like a particularly convenient way of selecting elements from a vector. However, when combined with a vector comparison, this is an extremely useful tool for selecting elements of a vector that satisfy a certain criteria. This method is called **boolean masking**. 
+
+```{r}
+v <- c(5, 6, 2, 3, 9, 4, 8, 1)
+sel <- v < 6
+v[sel]
+```
+
+The last two lines in the previous cell can be combined into a single line.
+
+```{r}
+v[v < 6]
+```
+
+
+
+

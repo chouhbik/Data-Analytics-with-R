@@ -1,0 +1,196 @@
+---
+title: "2 - Vectors in R"
+author: "Kamal Chouhbi"
+output:
+   html_notebook:
+    theme: simplex
+    toc: true
+    toc_depth: 4
+---
+
+A **vector** is a data type that is used to store a collection of elements. The elements in a vector can be of any basic type, but all elements of a single vector must be of the same type. In this class, we will primarily work with vectors of the **numeric** data type. 
+
+### **Creating Vectors**
+
+There are several ways to create a vector in R. In this notebook we will discuss two functions that can be used to create vectors from scratch: The `c` function, and the 
+
+#### **Combine**
+
+Vectors can be formed using the `c()` function. The name of this function is short for the word "combine". In the code chunk below, we will create two vectors name `v1` and `v2`, each of which contains four elements. 
+
+
+```{r}
+v1 <- c(3, 1, 4, 1)
+v2 <- c(5, 9, 2, 6)
+```
+
+We will view the contents of the vector `v1`.  
+
+```{r}
+v1
+```
+
+Similarly, we can view the contents of 'v2'. 
+
+```{r}
+v2
+```
+
+We can use the `c()` function to combine two vectors into a larger vector.
+
+```{r}
+v3 <- c(v1, v2)
+v3
+```
+
+Although we will mostly work with numeric vectors, we will occasionally need to work with vectors whose elements are of the character class. 
+
+```{r}
+text_vec <- c("Alex", "Beth", "Craig", "Drew", "Emma")
+text_vec
+```
+
+#### **The `seq` Function**
+
+The `seq()` function is a convenient tool for creating a vector consisting of several values, evently spaced over a range. 
+
+```{r}
+s1 <- seq(from=0, to=5, by=0.2)
+s1
+```
+
+```{r}
+s2 <- seq(from=6, to=10, by=0.5)
+s2
+```
+
+If the terms of our sequence vary by 1, we can use the `start:end` shorthand notation to create the sequence. 
+
+```{r}
+s3 <- 3:12
+s3
+```
+
+
+#### **Functions**
+
+In this section, we will introduce several functions that can be used to get information about a vector. The first such function that we will demostrate is `length()`, which returns the number of elements in the vector. 
+
+```{r}
+length(s1)
+```
+
+The `sum()` function can be used to sum up the elements of a numeric vector. 
+
+```{r}
+sum(s1)
+```
+
+Being a statistical programming language, R also provides several functions for calculating statistics for the numbers stored in a vector. For example, the `mean()` function returns the arithmetic average of the elements of a vector. 
+
+```{r}
+mean(s1)
+```
+
+We can use `sd()` to find the sample standard deviation of the numbers in a vector. 
+
+```{r}
+sd(s1)
+```
+
+And `var()` provides the sample variance.
+
+```{r}
+var(s1)
+```
+
+### **Vector Operations**
+
+One of the biggest advantages of vectors is that they support elementwise operations. If we wish to apply a specific operation to each element in a vector, we can simply apply the operation to the vector as a whole. R will automatically apply the operation to each element of the vector, without the need for using a loop. 
+
+The follow cell illustrates the operation of scalar multiplication. We will multiply the contents of our vector `v1` (defined at the beginning of the notebook) by the scalar value 4. 
+
+```{r}
+4 * v1
+```
+
+We can also add a constant amount to all of the entries in a vector. 
+
+```{r}
+30 + v1
+```
+
+
+If we add two vectors of the same length, then the addition will be performed elementwise. 
+
+```{r}
+v1 + v2
+```
+
+We can also perform elementwise multiplication, division, or subtraction. The following cell demonstrates elementwise multiplication.
+
+```{r}
+v1 * v2
+```
+
+We can also use the `^` operator to raise every element of a vector to a common power. 
+
+```{r}
+v1^2
+```
+
+
+#### **Example: Calculating Revenue**
+
+Assume that an online retailer sells four products: Product A, Product B, Product C, and Product D. In the cell below, we define two vectors: `units` and `price`. Assume that the vector `units` stores the number of units that the retailer sold of Products A - D during a given week, listed in alphabetical order. The vector `price` lists the price of the four products, in the same order. The following cell calculates the total revenue for the retailer during the week. 
+
+```{r}
+units <- c(217, 362, 178, 255)
+price <- c(19.99, 15.49, 12.79, 22.49)
+revenue <- sum(units * price)
+revenue
+```
+
+#### **Example: Projectile Motion**
+
+Assume that a ball is launched upward from a height of 640 feet with an initial velocity of 96 ft/sec. Then the height `h` of the ball after `t` seconds is given by the formula: 
+
+$$h(t) = 640 + 96 t - 16 t^2$$
+The following code chunk calcualtes the height of the ball at times $t = 0, 1, 2, ..., 10$. 
+
+
+```{r}
+t <- 0:10
+h <- 640 + 96*t - 16*t^2
+h
+```
+
+It is occasionally useful to show the contents of two vectors of the same length stacked together horizontally. The function `rbind()` can be used to accomplish this. 
+
+```{r}
+rbind(t, h)
+```
+
+#### **Example: SSE and MSE**
+
+Two vector calculations that are of particular importance in statistics and machine learning are to find the sum and mean of the squares of the entries in a vector. If the elements of the vector represent errors associated with several individual predictions, the we called the resulting values the **Sum of Square Errors (SSE)** and **Mean Squared Error (MSE)**. 
+
+In the cell below, we define an error vector `e`.
+
+```{r}
+e <- c(1.7, 2.1, -3.2, 4.1, -2.7)
+```
+
+In the next cell, we will calculate `SSE`. 
+
+```{r}
+SSE <- sum(e^2)
+SSE
+```
+
+The following cell calculates the value of `MSE`. 
+
+```{r}
+MSE <- mean(e^2)
+MSE
+```

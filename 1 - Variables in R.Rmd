@@ -1,0 +1,104 @@
+---
+title: "1 - Variables in R"
+author: "Kamal Chouhbi"
+output:
+  html_notebook:
+    theme: simplex
+    toc: true
+    toc_depth: 4
+---
+
+
+A **variable** in R can be thought of as a container or storage location for a piece of information. A variable has two features:
+
+
+* A piece of information which is stored within the variable. This could be a single number, a list of numbers, a string of characters, or some more complex type of information.
+
+* A name, which is used to refer to the variable. We use the name of a variable to access its contents.
+
+### **Assignment Operator**
+
+We create variables in R by using the **assignment operator**, which is written as `<-`. The name of the variable being created must appear to the left of this arrow, and the value being stored must appear on the right. 
+
+In the code chunk below, we create two variables, `a` and `b`, which contain the values 3 and 5, respectively. 
+
+
+```{r}
+a <- 3
+b <- 5
+```
+
+We can ask R to print the value of a variable by typing the name of the variable on a line by itself. In the chunk below, we check the value of `a`. 
+
+```{r}
+a
+```
+
+We can also check the value of `b`. 
+
+```{r}
+b
+```
+
+### **Arithmetic Operations**
+
+We can combine the value of variables using standard arithmetic operations. Here we add the values stored in `a` and `b`. 
+
+```{r}
+a + b
+```
+
+We can also perform multiplication. 
+
+```{r}
+a * b
+```
+
+We use the `^` symbol to perform exponentiation. 
+
+```{r}
+a ^ b
+```
+
+If we wish, we can store the result of a mathematical operation in a new variable. This can be useful if we wish to use the result in a later calculation. In the next code chunk, we will create a variable called `temp` which stores the value of `b^2 - 4*a`.
+
+```{r}
+temp <- b^2 - 4*a
+```
+
+Notice that the value of `b^2 - 4*a` was not displayed above. That is because we stored the result in a variable instead of letting it show up as output. As before, we can check the value of `temp` to see the result of the calculation. 
+
+```{r}
+temp
+```
+
+### **Variable Names**
+
+Variables names in R can contain any number of characters, and can consist of letters (uppercase or lowercase), numbers, underscores, and dots. The first character must be either a letter or a dot, and if the first character is a dot, then the second character has to be a number. The table below shows examples of several value and invalid variable names
+
+<center>
+<table width=200>
+  <tr><td>**Valid**</td><td>**Invalid**</td></tr>
+  <tr><td>`my_var`</td><td>`_my_var`</td></tr>
+  <tr><td>`myVar`</td><td>`my-var`</td></tr>
+  <tr><td>`my.var`</td><td>`my!var`</td></tr>
+  <tr><td>`Var_1`</td><td>`1_Var`</td></tr>
+  <tr><td>`temp`</td><td>`temp#`</td></tr>
+  <tr><td>`.total`</td><td>`.1total`</td></tr>
+</table>
+</center>
+<br/>
+The ability to use longer strings of characters as variable names allows us the option to give our variables descriptive names. 
+
+```{r}
+mon_sales <- 357
+tue_sales <- 463
+wed_sales <- 612
+thu_sales <- 428
+fri_sales <- 679
+
+total_sales <- mon_sales + tue_sales + wed_sales + thu_sales + fri_sales
+total_sales
+```
+
+
