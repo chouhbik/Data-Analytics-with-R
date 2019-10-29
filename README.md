@@ -13,3 +13,5 @@ The data analysis process involves several interrelated steps:
 - Appropriate methods from the data mining tool bag need to be applied. Depending on the problem, this may involve regression, logistic regression, regression/classification trees, nearest neighbor methods, k-means clustering, and so on.
 - The findings from these models need to be confirmed, typically on an evaluation (test or holdout) data set.
 - Finally, the insights one gains from the analysis need to be implemented. One must act on the findings and spring to action. This is what W.E. Deming had in mind when he talked about process improvement and his Deming (Shewhart) wheel of “plan, do, check, and act” (Ledolter and Burrill, 1999).
+
+Data preparation often takes a lot more time than the eventual modeling. The subsequent modeling is usually only a small component of the overall effort; quite often, relatively simple methods and a few well-constructed graphs can tell the whole story.
